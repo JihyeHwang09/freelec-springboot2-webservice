@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /*
 @RunWith(SpringRunner.class)
+    - 이 어노테이션을 붙여줘야 스프링 테스트를 JUnit으로 돌릴 수 있다.
     - 테스트 진행시, JUnit에 내장된 실행자 외에 다른 실행자를 실행시킨다.
     - 여기서는 SpringRunner라는 실행자를 실행시킨다.
     --> 즉, 스프링 부트 테스트와 JUnit 사이의 연결자 역할을 한다.
