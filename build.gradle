@@ -50,6 +50,8 @@ repositories {
 dependencies {
     // compile 메서드 안에 라이버리르이 이름 앞부분만 추가한 뒤 자동완성 클릭시, 그레이들이 변경된 내용을 자동으로 반영하기 시작한다.
     compile('org.springframework.boot:spring-boot-starter-web')
+
+    compile('org.springframework.boot:spring-boot-devtools')
     /*
      롬복은 프로젝트마다 설정해야 한다.
      플러그인 설치는 한 번만 하면 되지만,
