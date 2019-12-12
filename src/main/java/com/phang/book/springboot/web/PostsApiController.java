@@ -3,6 +3,7 @@ package com.phang.book.springboot.web;
 import com.phang.book.springboot.service.posts.PostsService;
 import com.phang.book.springboot.web.dto.PostsResponseDto;
 import com.phang.book.springboot.web.dto.PostsSaveRequestDto;
+import com.phang.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
