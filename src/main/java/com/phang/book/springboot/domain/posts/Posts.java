@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.transaction.Transactional;
 
 /*
 주요 어노테이션을 클래스에 가깝게 둔다.
@@ -37,7 +38,7 @@ import javax.persistence.Id;
     - ex) SalesManager.java -> sales_manager table
 
     - Entity 클래스에서는 절대!!! Setter 메서드를 만들지 않는다!!!
-    (대신, 해당 필드의 값 변경이 필요하면, 명확히 그 목적과 의도를 나타낼 수 있는 메서드를 추가해야 한다. )
+    (대신, 해당 필드의 값 변경이 필요하면, 명확히 그 목적과 의도를 나타낼 수 있는 메서드를 추가해야 한다.)
 */
 
 @Entity
@@ -99,3 +100,4 @@ Q) 생성자가 아닌 빌더 클래스를 사용하는 이유?
 
     - But, 빌더를 사용하면, 어느 필드에 어떤 값을 채워야 할지 명확하게 인지할 수 있다.
  */
+
