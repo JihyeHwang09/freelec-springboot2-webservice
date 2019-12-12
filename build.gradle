@@ -7,6 +7,7 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         // spring-boot-gradle-plugin을 의존성을 받는다는 의미임
