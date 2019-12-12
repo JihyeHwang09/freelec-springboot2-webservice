@@ -87,6 +87,11 @@ public class Posts {
         this.content = content;
         this.author = author;
     }
+
+    public  void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
 /*
 Q) Setter가 없는데, 이 상황에서 어떻게 값을 채워서 DB에 삽입하는가?
