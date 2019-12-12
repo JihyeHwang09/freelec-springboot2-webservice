@@ -1,5 +1,6 @@
 package com.phang.book.springboot.domain.posts;
 
+import com.phang.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,7 +43,7 @@ import javax.transaction.Transactional;
 */
 
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 /*
     Posts 클래스
         - 실제 DB의 테이블과 매칭될 클래스. 보통 Entity 클래스라고 부른다.
