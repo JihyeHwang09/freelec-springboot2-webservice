@@ -2,6 +2,7 @@ package com.phang.book.springboot.service.posts;
 
 import com.phang.book.springboot.domain.posts.Posts;
 import com.phang.book.springboot.domain.posts.PostsRepository;
+import com.phang.book.springboot.web.dto.PostsListResponseDto;
 import com.phang.book.springboot.web.dto.PostsResponseDto;
 import com.phang.book.springboot.web.dto.PostsSaveRequestDto;
 import com.phang.book.springboot.web.dto.PostsUpdateRequestDto;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -37,6 +40,18 @@ public class PostsService {
 
         return new PostsResponseDto(entity);
     }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+//      위의 람다식은 .map(posts -> new PostsListResponseDto(posts))와 같은 코드임
+//      postsRepository 결과로 넘어온 Posts의 Stream을
+//      map을 통해 PostsListResponseDto로 변환 -> List로 반환하는 메서드
+//      아직 PostsListResponseDto 클래스가 없기 때문에 이 클래스 역시 생성한다.
+    }
+
 
 }
 /*
