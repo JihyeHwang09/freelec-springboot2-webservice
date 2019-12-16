@@ -52,6 +52,20 @@ public class PostsService {
 //      아직 PostsListResponseDto 클래스가 없기 때문에 이 클래스 역시 생성한다.
     }
 
+    @Transactional
+    public void delete (Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new
+                        IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        /*
+         postsRepository.delete(posts)
+            - JpaRepository에서 이미 delete 메서드를 지원하고 있으니 이를 활용하자.
+            - 엔티티를 파라미터로 삭제할 수도 있고, deleteById 메서드를 이용하면 id를 삭제할 수도 있다.
+            - 존재하는 Posts인지 확인을 위해 엔티티 조회 후 그대로 삭제한다.
+         */
+        postsRepository.delete(posts);
+    }
 
 }
 /*
