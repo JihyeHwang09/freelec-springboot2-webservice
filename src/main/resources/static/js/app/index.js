@@ -77,7 +77,7 @@ var main = {
 
         $.ajax({
                    type: 'DELETE',
-                   url: '/api/v1/posts/'+id,
+                   url: '/api/v1/posts/'+ id,
                    dataType: 'json',
                    contentType:'application/json; charset=utf-8'
                }).done(function() {
@@ -87,7 +87,6 @@ var main = {
             alert(JSON.stringify(error));
         });
     }
-
 };
 
 main.init();
