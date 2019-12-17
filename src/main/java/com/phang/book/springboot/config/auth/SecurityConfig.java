@@ -2,14 +2,13 @@ package com.phang.book.springboot.config.auth;
 
 import com.phang.book.springboot.domain.user.Role;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
 @RequiredArgsConstructor
 // @EnableWebSecurity: Spring Security 설정들을 활성화시켜준다.
-
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -31,7 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 - URL별 권한 관리를 설정하는 옵션의 시작점
                 - authorizeRequests가 선언되어야만 antMatchers 옵션을 사용할 수 있다.
  */
-
                 .authorizeRequests()
                 /*
                 authorizeRequests

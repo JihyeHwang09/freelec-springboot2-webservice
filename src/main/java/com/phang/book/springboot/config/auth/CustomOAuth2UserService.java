@@ -86,5 +86,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     ex) @OneToMany, @ManyToMany 등 자식 엔티티를 갖고 있다면,
     직렬화 대상에 자식들까지 포함되니 성능 이슈, 부수 효과가 발생할 확률이 높다.
 
-    그래서 직렬화 기능을 가진 세션 Dto를 하나 추가로 만드는 거싱 이후 운영 및 유지보수 때 많은 도움이 된다.
+    -> 그래서 직렬화 기능을 가진 세션 Dto를 하나 추가로 만드는 것이
+     이후 운영 및 유지보수 때 많은 도움이 된다.
  */
