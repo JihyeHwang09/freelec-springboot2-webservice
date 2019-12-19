@@ -10,11 +10,18 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  @SpringBootApplication가 있는 위치부터 설정을 읽어가기 때문에
  -> 반드시 항상 프로젝트의 최상단에 위치해야 한다!
  */
-@EnableJpaAuditing // JPA Auditing 활성화
+
+/*
+ EnableJpaAuditing을 사용하기 위해서는 최소 하나의 @Entity 클래스가 필요하다.
+ @WebMvcTest이다보니 당연히 없다.
+ @EnableJpaAuditing이 @SpringBootApplication과 함께 있다보니
+ @WebMvcTest에서도 스캔하게 되었다.
+ -> @EnableJpaAuditin과  @SpringBootApplication 분리
+ */
+//@EnableJpaAuditing
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
-
         // SpringApplication.run()로 인해 내장 WAS(web Application Server)를 실행한다.
 
         /*

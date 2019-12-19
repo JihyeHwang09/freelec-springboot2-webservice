@@ -1,9 +1,13 @@
 package com.phang.book.springboot.web;
 
+import com.phang.book.springboot.config.auth.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -26,8 +30,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     - 여러 스프링 테스트 어노테이션 중, Web(Spring MVC에 집중할 수 있는 어노테이션)
     - 선언할 경우 @Controller, @ControllerAdvice 등을 사용할 수 있다.
     - 여기서는 컨트롤러만 사용하기 때문에 선언한다.
+
+    - WebSecurityConfigurerAdapter, WebMvcConfigurer를 비롯한 @ControllerAdvice, @Controller를 읽는다.
+    - -> 즉, @Service, @Component는 스캔 대상이 아니다!
+    - -> 이 문제를 해결하기 위해서 스캔 대상에서 SecurityConfig를 제거한다.
  */
-@WebMvcTest
+@WebMvcTest(controllers = HelloController.class,
+        excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)})
 public class HelloControllerTest {
 
 //    @Autowired: 스프링이 관리하는 빈(Bean)을 주입 받는다.
@@ -41,6 +50,7 @@ public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    @WithMockUser(roles = "USER") // 가짜로 인증된 사용자를 생성
     @Test
     public void hello가_리턴된다() throws Exception {
         String hello = "hello";
@@ -69,6 +79,7 @@ public class HelloControllerTest {
 */
     }
 
+    @WithMockUser(roles = "USER") // 가짜로 인증된 사용자를 생성
     @Test
     public void helloDto가_리턴된다() throws Exception {
         String name = "hello";
