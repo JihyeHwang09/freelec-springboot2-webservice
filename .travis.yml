@@ -30,4 +30,5 @@ notifications:
   email:
     recipients:
       - raye9053@gmail.com
-
+before_install:
+  - chmod +x gradlew
