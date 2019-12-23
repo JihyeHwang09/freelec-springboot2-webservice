@@ -58,6 +58,10 @@ deploy:
 #  - 해당 위치의 파일들만 S3로 전송한다.
   local_dir: deploy # before_deploy에서 생성한 디렉토리
   wait-until-deploy: true
+  on:
+    repo: JihyeHwang09/freelec-springboot2-webservice
+    branch: master
+
 
   - provider: codedeploy
     # Travis repo settings에 설정된 값
@@ -71,6 +75,9 @@ deploy:
     deployment_group: freelec-springboot2-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deploy: true
+    on:
+      repo: JihyeHwang09/freelec-springboot2-webservice
+      branch: master
 
 # CI 실행 완료 시 메일로 알람
 # notifications: Travis CI 실행 완료 시, 자동으로 알람이 가도록 설정한다.
