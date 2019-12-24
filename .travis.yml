@@ -8,15 +8,14 @@ jdk:
 branches:
   only:
     - master
-
 # Travis CI 서버의 Home
 #cache
 # - 그레이들을 통해 의존성을 받게 되면, 이를 해당 디렉토리에 캐시하여,
 #   같은 의존성은 다음 배포 때부터 다시 받지 않도록 설정
 cache:
   directories:
-    - '$Home/.m2/repository'
-    - '$Home/.gradle'
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
 
 
 #  script
@@ -57,11 +56,7 @@ deploy:
 #  - 앞에서 생성한 deploy 디렉토리를 지정한다.
 #  - 해당 위치의 파일들만 S3로 전송한다.
   local_dir: deploy # before_deploy에서 생성한 디렉토리
-  wait-until-deploy: true
-  on:
-    repo: JihyeHwang09/freelec-springboot2-webservice
-    branch: master
-
+  wait-until-deployed: true
 
 - provider: codedeploy
   # Travis repo settings에 설정된 값
@@ -74,10 +69,7 @@ deploy:
   application: freelec-springboot2-webservice # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
   deployment_group: freelec-springboot2-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
   region: ap-northeast-2
-  wait-until-deploy: true
-  on:
-    repo: JihyeHwang09/freelec-springboot2-webservice
-    branch: master
+  wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알람
 # notifications: Travis CI 실행 완료 시, 자동으로 알람이 가도록 설정한다.
@@ -85,5 +77,6 @@ notifications:
   email:
     recipients:
       - raye9053@gmail.com
+
 before_install:
   - chmod +x gradlew
