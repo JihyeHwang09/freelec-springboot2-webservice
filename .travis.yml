@@ -33,43 +33,41 @@ before_deploy:
 #  zip -r zip -r freelec-springboot2-webservice
 #  - 현재 위치의 모든 파일을 zip -r freelec-springboot2-webservice 이름으로 압축(zip) 한다.
 #  - 명령어의 마지막 위치는 본인의 프로젝트 이름이어야 한다.
-
   - zip -r freelec-springboot2-webservice *
 #  mkdir -p deploy: deploy라는 디렉토리를 Travis Ci가 실행중인 위치에서 생성한다.
   - mkdir -p deploy
 # mv freelec-springboot2-webservice.zip deploy/freelec-springboot2-webservice.zip
 #  - freelec-springboot2-webservice.zip 파일을 deploy/freelec-springboot2-webservice.zip로 이동시킨다.
   - mv freelec-springboot2-webservice.zip deploy/freelec-springboot2-webservice.zip
-
 # deploy: S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언한다.
 deploy:
-- provider: s3
-  # Travis repo settings에 설정된 값
-  access_key_id: $AWS_ACCESS_KEY
-  # Travis repo settings에 설정된 값
-  secret_access_key: $AWS_SECRET_KEY
-  bucket: freelec-springboot-phang-build # S3 버킷
-  region: ap-northeast-2
-  skip_cleanup: true
-  acl: private # zip파일 접근을 private으로
-#  local_dir: deploy
-#  - 앞에서 생성한 deploy 디렉토리를 지정한다.
-#  - 해당 위치의 파일들만 S3로 전송한다.
-  local_dir: deploy # before_deploy에서 생성한 디렉토리
-  wait-until-deployed: true
+  - provider: s3
+    # Travis repo settings에 설정된 값
+    access_key_id: $AWS_ACCESS_KEY
+    # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: freelec-springboot-phang-build # S3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private # zip파일 접근을 private으로
+  #  local_dir: deploy
+  #  - 앞에서 생성한 deploy 디렉토리를 지정한다.
+  #  - 해당 위치의 파일들만 S3로 전송한다.
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
 
-- provider: codedeploy
-  # Travis repo settings에 설정된 값
-  access_key_id: $AWS_ACCESS_KEY
-  # Travis repo settings에 설정된 값
-  secret_access_key: $AWS_SECRET_KEY
-  bucket: freelec-springboot-phang-build # S3 버킷
-  key: freelec-springboot2-webservice.zip
-  bundle_type: zip
-  application: freelec-springboot2-webservice # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
-  deployment_group: freelec-springboot2-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
-  region: ap-northeast-2
-  wait-until-deployed: true
+  - provider: codedeploy
+    # Travis repo settings에 설정된 값
+    access_key_id: $AWS_ACCESS_KEY
+    # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: freelec-springboot-phang-build # S3 버킷
+    key: freelec-springboot2-webservice.zip
+    bundle_type: zip
+    application: freelec-springboot2-webservice # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
+    deployment_group: freelec-springboot2-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알람
 # notifications: Travis CI 실행 완료 시, 자동으로 알람이 가도록 설정한다.
